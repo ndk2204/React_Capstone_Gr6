@@ -51,7 +51,7 @@ const number = 1;
 // cham hon, do ton tai nguyen
 switch (number) {
   case 1: {
-    console.log("so mot");
+    // console.log("so mot");
     break;
   }
   default:
@@ -60,7 +60,7 @@ switch (number) {
 // nhanh hon, ton tai nguyen
 const obj = {
   "1": () => {
-    console.log("so mot");
+    // console.log("so mot");
   },
   "2": () => {
     console.log("so hai");

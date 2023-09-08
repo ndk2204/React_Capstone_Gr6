@@ -13,7 +13,7 @@ import imgLogo from "src/assets/imgs/logo.png";
 import { Link } from "react-router-dom";
 
 function Header() {
-  console.log({ css });
+  // console.log({ css });
   return (
     <>
       <header className={css.header}>
