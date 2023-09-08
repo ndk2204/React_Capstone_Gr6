@@ -1,12 +1,12 @@
-import React, { Fragment, ReactNode } from "react";
+import React, { Fragment, PropsWithChildren, ReactNode } from "react";
 import "./global-style.scss";
 
-/** Cách 1:  */
-type Props = {
-  children: ReactNode;
-};
-/** PropsWithChildren: Cách 2 */
-export function GlobalStyle(props: Props) {
+/** Cách 1: props: Props */
+// type Props = {
+//   children: ReactNode;
+// };
+/** Cách 2: props: PropsWithChildren */
+export function GlobalStyle(props: PropsWithChildren) {
   const { children } = props;
 
   return <Fragment>{children}</Fragment>;
