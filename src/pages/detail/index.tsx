@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import { getProductById } from "src/services/product.service";
 import { IProduct } from "./detail.type";
 import ListCard from "src/components/list-card";
+import css from "./detail.module.scss";
 
 type TParams = {
   productId: string;
 };
 
 function Detail() {
+  //hook useParams
   const params = useParams<TParams>();
   const [productItem, setProductItem] = useState<IProduct>();
 

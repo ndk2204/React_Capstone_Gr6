@@ -20,9 +20,9 @@ import css from "./carousel.module.scss";
 
 const HomeCarousel: React.FC = () => {
   const onChange = (currentSlide: number) => {
-    console.log(currentSlide);
+    // console.log(currentSlide);
   };
-  console.log({ css });
+  
   /**
    * Để truy cập được những methods của component export ra thì ta dùng useRef
    */
@@ -51,7 +51,11 @@ const HomeCarousel: React.FC = () => {
 
         {/* Đối với những props có giá trị là true (autoplay) thì chỉ cần truyền tên không cần truyền cụ thể giá trị true */}
         <div className={css["carousel-img"]}>
-          <Carousel dotPosition="bottom"   ref={refCarsousel} afterChange={onChange}>
+          <Carousel
+            dotPosition="bottom"
+            ref={refCarsousel}
+            afterChange={onChange}
+          >
             <div className={css["box-img"]}>
               <img src={h1} />
             </div>
@@ -64,8 +68,12 @@ const HomeCarousel: React.FC = () => {
           </Carousel>
         </div>
         <div className={css["carousel-title"]}>
-          <h1 style={{fontSize:40,fontWeight:300,marginBottom:0}}>Adidas Prophere</h1>
-          <p style={{fontSize:20,fontWeight:300,marginBottom:25}}>Adidas description</p>
+          <h1 style={{ fontSize: 40, fontWeight: 300, marginBottom: 0 }}>
+            Adidas Prophere
+          </h1>
+          <p style={{ fontSize: 20, fontWeight: 300, marginBottom: 25 }}>
+            Adidas description
+          </p>
           <button className={css["carousel-btn"]}>Buy now</button>
         </div>
       </div>

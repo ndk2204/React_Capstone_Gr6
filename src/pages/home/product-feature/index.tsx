@@ -3,8 +3,7 @@ import { useAppSelector } from "src/redux/config-store";
 import css from "./product-feature.module.scss";
 
 function ProductFeature() {
-  const list = useAppSelector((state) => state.productReducer.listProduct);
-
+  const dataSP = useAppSelector((state) => state.productReducer.listProduct);
   return (
     <div>
       <h2 className={css["heading"]}>Product Feature</h2>
@@ -13,7 +12,7 @@ function ProductFeature() {
         return <Card key={item.id} data={item} />;
       })} */}
 
-      <ListCard list={list} />
+      <ListCard list={dataSP} />
     </div>
   );
 }
