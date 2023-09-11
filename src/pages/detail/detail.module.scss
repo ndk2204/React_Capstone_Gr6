@@ -1,0 +1,96 @@
+.boxDetail {
+  display: flex;
+  justify-content: space-around;
+  margin: 5rem 0 5.5rem;
+}
+.image {
+  width: 45%;
+  max-width: 33rem;
+  max-height: 35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+
+  img {
+    width: 220px;
+    height: 156px;
+    object-fit: cover;
+  }
+}
+.content {
+  width: 55%;
+}
+.nameShoe {
+  font-size: 3rem;
+  font-weight: 300;
+}
+.dercShoe {
+  width: 50rem;
+}
+
+.available {
+  color: #1ed90e;
+  font-size: 2.4rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+.sizeShoe {
+  border: none;
+  font-size: 2.4rem;
+  font-weight: 600;
+  width: 5rem;
+  height: 5rem;
+  margin-right: 1.5rem;
+  background-color: #cccccc;
+}
+.addToCart:hover {
+  border: 0.3rem solid rgb(55, 108, 208);
+}
+.upDown:hover,
+.sizeShoe:hover {
+  border: 0.3rem solid purple;
+}
+.priceShoe {
+  font-size: 3rem;
+  font-weight: 600;
+  color: red;
+  margin: 1.5rem 0;
+}
+.upDown {
+  padding: 0;
+  border: none;
+  font-size: 3rem;
+  font-weight: 400;
+  width: 5rem;
+  height: 5rem;
+  color: white;
+  background: linear-gradient(180deg, #6181f3 0%, #7c97f5 99.48%);
+}
+.quality {
+  font-size: 3rem;
+  font-weight: 400;
+  padding: 0 2rem;
+}
+.addToCart {
+  border: none;
+  font-size: 2.4rem;
+  font-weight: 500;
+
+  margin-top: 2rem;
+  width: 16rem;
+  height: 6.5rem;
+  color: white;
+  background: linear-gradient(
+    270deg,
+    rgba(62, 32, 248, 0.9) 5.14%,
+    #d017ee 89.71%
+  );
+}
+
+.realate {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 400;
+  margin-bottom: 5rem;
+}

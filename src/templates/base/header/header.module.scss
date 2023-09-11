@@ -23,7 +23,6 @@ gap: 0.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  text-decoration: none;
   color: white;
   font-size: 2rem;
   font-weight: 300;
@@ -35,7 +34,6 @@ gap: 0.5rem;
 
   a {
     color: white;
-    text-decoration: none;
     margin: 0 0.5rem;
   }
 }
@@ -44,10 +42,8 @@ gap: 0.5rem;
   display: flex;
   align-items: center;
   gap: 4rem;
-
   padding: 1.3rem 2.5rem;
   a {
-    text-decoration: none;
     color: #000000;
     font-size: 2rem;
     font-weight: 300;

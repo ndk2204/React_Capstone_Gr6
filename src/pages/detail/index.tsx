@@ -28,27 +28,32 @@ function Detail() {
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-        }}
-      >
-        <div className="image">
+      <div className={css.boxDetail}>
+        <div className={css.image}>
           <img
-            style={{
-              width: 400,
-              height: 400,
-            }}
             src={productItem?.image}
           />
         </div>
-        <div className="content">
-          <p>{productItem?.name}</p>
-          <p>{productItem?.shortDescription}</p>
+        <div className={css.content}>
+          <p className={css.nameShoe}>{productItem?.name}</p>
+          <p className={css.dercShoe}>{productItem?.description}</p>
+          <h3 className={css.available}>Available size</h3>
+          <div className="listSize">
+            {productItem?.size.map((size,index) => {
+              return <button key={index} className={css.sizeShoe}>{size}</button>;
+            })}
+          </div>
+          <p className={css.priceShoe}>{productItem?.price}$</p>
+          <div className="upDown">
+            <button className={css.upDown}>+</button>
+            <span className={css.quality}>1</span>
+            <button className={css.upDown}>-</button>
+          </div>
+          <button className={css.addToCart}>Add to cart</button>
         </div>
       </div>
       <div>
-        <h2>- Relate Product -</h2>
+        <h2 className={css.realate}>- Realate Product -</h2>
 
         {productItem?.relatedProducts && (
           <ListCard list={productItem.relatedProducts} />
