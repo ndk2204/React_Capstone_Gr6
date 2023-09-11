@@ -1,7 +1,7 @@
 import React from "react";
 
 function HomeSkeleton() {
-  return <div>HomeSkeleton</div>;
+  return <div>Loading............</div>;
 }
 
 export default HomeSkeleton;

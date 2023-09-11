@@ -3,10 +3,8 @@ import css from "./header.module.scss";
 
 /** cách 1: */
 import searchSvg from "src/assets/imgs/search.svg";
-
 // import IconSearch from "src/assets/icons/search.icon";
 // import IconCart from "src/assets/icons/cart.icon";
-
 import { IconCart, IconSearch } from "src/assets/icons";
 
 import imgLogo from "src/assets/imgs/logo.png";
@@ -22,10 +20,10 @@ function Header() {
         </Link>
 
         <div className={css["header-left"]}>
-          <div className={css["header-left-search"]}>
+          <Link to="/search" className={css["header-left-search"]}>
             <IconSearch />
             <span>Search</span>
-          </div>
+          </Link>
           <div className={css["header-left-cart"]}>
             <IconCart />
             <span>(1)</span>

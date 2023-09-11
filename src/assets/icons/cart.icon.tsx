@@ -3,8 +3,8 @@ import React, { memo } from "react";
 function Cart() {
   return (
     <svg
-      width="24px"
-      height="24px"
+      width="30px"
+      height="30px"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

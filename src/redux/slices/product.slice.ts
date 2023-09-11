@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TCardItem } from "src/types";
+//createSlice của reduxjs/toolkit, gom tổng hợp 3 folder action,constant,reduce
 
 type TState = {
   listProduct: TCardItem[];
@@ -15,25 +16,26 @@ const productSlice = createSlice({
   reducers: {
     // name + reducer: productSlice/setListProduct
     setListProduct: (state, action) => {
-      // redux + immer: giúp chúng ta clone object, không cần quan tâm đến địa chỉ.
-      // không cần dùng return
-      state.listProduct = action.payload;
-
-      // Cách cũ. có return
+      //1. Cách cũ. có return
       // return {
       //   ...state,
       //   listProduct: action.payload,
       // };
+
+      //2. redux + immer: giúp chúng ta clone object, không cần quan tâm đến địa chỉ.
+      // không cần dùng return
+      state.listProduct = action.payload;
     },
   },
 });
 
-// action creator
+// Bóc tách ra action creator của Redux
 export const { setListProduct } = productSlice.actions;
 
+//productSlice tạo ra hàm reducer, chấm đến để sử dụng reducer
 export default productSlice.reducer;
 
-// ----- Cách tạo ra create slice -----
+// ----- VD Cách createSlice tạo ra reducer -----
 const __createSlice = () => {
   return {
     reducer: (state = initialState, action: any) => {
@@ -46,8 +48,8 @@ const __createSlice = () => {
   };
 };
 
+//VD cách chạy createSlice
 const number = 1;
-
 // cham hon, do ton tai nguyen
 switch (number) {
   case 1: {
@@ -63,10 +65,8 @@ const obj = {
     // console.log("so mot");
   },
   "2": () => {
-    console.log("so hai");
+    // console.log("so hai");
   },
 };
-
 obj[1]();
-
 // mapper
