@@ -24,10 +24,10 @@ function Header() {
             <IconSearch />
             <span>Search</span>
           </Link>
-          <div className={css["header-left-cart"]}>
+          <Link to="/carts" className={css["header-left-cart"]}>
             <IconCart />
             <span>(1)</span>
-          </div>
+          </Link>
           <div className={css["header-left-author"]}>
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
