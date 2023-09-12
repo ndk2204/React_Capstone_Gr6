@@ -17,11 +17,6 @@ function Login() {
     e.preventDefault();
     userLogin(formLogin)
       .then((resp) => {
-        /**
-         * 1. lưu storage
-         * 2. navigate profile
-         */
-
         setLocalStorage(ACCESS_TOKEN, resp.content.accessToken);
 
         navigate("/profile");
@@ -83,22 +78,3 @@ function Login() {
 }
 
 export default Login;
-
-{
-  /* <form onSubmit={handleLogin}>
-<input
-  name="email"
-  value={formLogin.email}
-  onChange={handleChange}
-  placeholder="email"
-/>
-<input
-  name="password"
-  onChange={handleChange}
-  value={formLogin.password}
-  placeholder="password"
-/>
-
-<button type="submit">Login</button>
-</form> */
-}

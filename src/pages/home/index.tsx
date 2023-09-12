@@ -37,6 +37,7 @@ function Home() {
       const resp = await getAllProduct();
 
       const action = setListProduct(resp.content);
+      console.log(action);
 
       dispatch(action);
     })();
