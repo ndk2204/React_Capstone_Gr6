@@ -22,17 +22,17 @@ export function Card(props: Props) {
       <div className={css["content"]}>
         <img className={css["img"]} src={data.image} />
 
-        <p className={css["title"]}>{data.name}</p>
+        <Link to={`/detail/${data.id}`} className={css["title"]}>
+          {data.name}
+        </Link>
         <p className={css["desc"]}>{data.shortDescription}</p>
       </div>
 
       <div className={css["action"]}>
         <Link className={css["action-buy"]} to={`/detail/${data.id}`}>
-          Buy
+          Buy now
         </Link>
-        <Link className={css["action-price"]} to={`/detail/${data.id}`}>
-          {data.price}$
-        </Link>
+        <div className={css["action-price"]}>{data.price}$</div>
       </div>
     </div>
   );
