@@ -47,17 +47,14 @@
 .addToCart:hover {
   border: 0.3rem solid rgb(55, 108, 208);
 }
-.upDown:hover,
-.sizeShoe:hover {
-  border: 0.3rem solid purple;
-}
+
 .priceShoe {
   font-size: 3rem;
   font-weight: 600;
   color: red;
   margin: 1.5rem 0;
 }
-.upDown {
+.btnQuantity {
   padding: 0;
   border: none;
   font-size: 3rem;
@@ -67,7 +64,15 @@
   color: white;
   background: linear-gradient(180deg, #6181f3 0%, #7c97f5 99.48%);
 }
-.quality {
+.btnQuantity:hover,
+.sizeShoe:hover {
+  border: 0.3rem solid purple;
+}
+
+.sizeShoe:focus {
+  border: 0.3rem solid chartreuse;
+}
+.quantity {
   font-size: 3rem;
   font-weight: 400;
   padding: 0 2rem;

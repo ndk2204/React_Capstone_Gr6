@@ -3,6 +3,10 @@ import { BaseTemplate } from "../templates/base";
 import { Suspense, lazy } from "react";
 
 import HomeSkeleton from "src/pages/home/home.skeleton";
+import Men from "src/templates/base/header/men";
+import Woman from "src/templates/base/header/woman";
+import Kid from "src/templates/base/header/kid";
+import Sport from "src/templates/base/header/sport";
 
 const Home = lazy(() => import("../pages/home"));
 const Carts = lazy(() => import("../pages/carts"));
@@ -24,6 +28,22 @@ export const router = createBrowserRouter([
             <Home />
           </Suspense>
         ),
+      },
+      {
+        path: "men",
+        element: <Men />,
+      },
+      {
+        path: "woman",
+        element: <Woman />,
+      },
+      {
+        path: "kid",
+        element: <Kid />,
+      },
+      {
+        path: "sport",
+        element: <Sport />,
       },
       {
         path: "carts",

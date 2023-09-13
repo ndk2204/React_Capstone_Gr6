@@ -8,10 +8,15 @@ import searchSvg from "src/assets/imgs/search.svg";
 import { IconCart, IconSearch } from "src/assets/icons";
 
 import imgLogo from "src/assets/imgs/logo.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   // console.log({ css });
+
+  const handleClassActive = ({ isActive }: any) => {
+    return isActive ? css.active : "";
+  };
+
   return (
     <>
       <header className={css.header}>
@@ -37,21 +42,29 @@ function Header() {
       <nav>
         <ul className={css["nav"]}>
           <li>
-            <Link className={css["active"]} to={"/"}>
+            <NavLink className={handleClassActive} to={"/"}>
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={"#"}>Men</Link>
+            <NavLink className={handleClassActive} to={"/men"}>
+              Men
+            </NavLink>
           </li>
           <li>
-            <Link to={"#"}>Woman</Link>
+            <NavLink className={handleClassActive} to={"/woman"}>
+              Woman
+            </NavLink>
           </li>
           <li>
-            <Link to={"#"}>Kid</Link>
+            <NavLink className={handleClassActive} to={"/kid"}>
+              Kid
+            </NavLink>
           </li>
           <li>
-            <Link to={"#"}>Sport</Link>
+            <NavLink className={handleClassActive} to={"/sport"}>
+              Sport
+            </NavLink>
           </li>
         </ul>
       </nav>

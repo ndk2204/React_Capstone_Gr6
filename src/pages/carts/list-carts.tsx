@@ -1,35 +1,37 @@
 import React from "react";
+import { getLocalStorage } from "src/utils";
 
 function ListCarts() {
+  let list = getLocalStorage("itemCarts")
+  console.log(list)
   return (
     <>
-      {/* {props.list.map((item) => {
-        return ( */}
+
       <tr className="table-list">
-        <td className="col-1">
+        <td className="check">
           <input type="checkbox" />
         </td>
-        <td className="shoeID">ID</td>
-        <td className="shoeIMG">Image</td>
-        <td className="shoeName">Namfdsfdsfdse</td>
-        <td className="shoePrice">Price</td>
+        <td className="shoeID">{list.id}</td>
+        <td className="shoeIMG">
+          <img src={list.image} /></td>
+        <td className="shoeName">{list.name}</td>
+        <td className="shoePrice">{list.price}$</td>
         <td className="quantity">
           <button className="btn btn-dark">
             <i className="fa-solid fa-minus"></i>
           </button>
-          <span id="quantityClick${shoe.id}">1</span>
+          <span>{list.quantity}</span>
           <button className="btn btn-dark">
             <i className="fa-solid fa-plus"></i>
           </button>
         </td>
-        <td className="total">Total</td>
-        <td className="">
+        <td className="total">{list.price * list.quantity}</td>
+        <td className="select">
           <button className="btn btn-info">Edit</button>
           <button className="btn btn-danger">Delete</button>
         </td>
       </tr>
-      {/* );
-      })} */}
+
     </>
   );
 }

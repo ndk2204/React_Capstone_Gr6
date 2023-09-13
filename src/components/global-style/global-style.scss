@@ -170,5 +170,123 @@ li.slick-active {
 .title {
   font-size: 4rem;
   font-weight: 400;
-  margin: 5rem 7rem;
+  margin: 5rem 0rem;
 }
+.cart .btn-dark {
+  font-size: 12px;
+  padding: 5px 10px;
+  transition: 0.5s;
+}
+.cart .btn-dark:hover {
+  opacity: 0.5;}
+  .cart .btn-submit {
+    background-image: linear-gradient(to right, #eacda3 0%, #d6ae7b 51%, #eacda3 100%);
+    background-size: 200% auto;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    transition: 0.5s;
+    color: black;
+    font-weight: 600;
+  }
+  .cart .btn-submit:hover {
+    background-position: right center;
+    font-size: larger;
+    font-weight: bolder;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 992px) {
+    .cart .shoeID {
+      display: none;
+    }
+    .cart #tableDanhSach .btn-dark {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+  }
+  @media only screen and (min-width: 576px) and (max-width: 768px) {
+    .cart #tableDanhSach .btn-dark {
+      font-size: 13px;
+      padding: 2px 8px;
+    }
+    .cart #tableDanhSach .shoeSize,
+    .cart #tableDanhSach .select,
+    .cart #tableDanhSach .quantity {
+      padding: 12px 5px;
+    }
+    .cart .total,
+    .cart .shoeID,
+    .cart .shoePrice {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 576px) {
+    .cart #tableDanhSach .btn-danger,
+    .cart #tableDanhSach .btn-dark {
+      font-size: 11px;
+      padding: 2px 4px;
+    }
+    .cart #tableDanhSach .shoeName,
+    .cart #tableDanhSach .shoeSize,
+    .cart #tableDanhSach .select,
+    .cart #tableDanhSach .quantity {
+      padding: 12px 5px;
+    }
+    .cart .shoeName,
+    .cart .total,
+    .cart .shoeID,
+    .cart .shoePrice {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 424px) {
+    .cart .table-list .btn-danger,
+    .cart .table-list .btn-dark {
+      font-size: 11px;
+      padding: 2px 4px;
+    }
+    .cart .table-list .shoeName,
+    .cart .table-list .shoeSize,
+    .cart .table-list .select,
+    .cart .table-list .quantity {
+      padding: 12px 5px;
+    }
+    .cart .shoeName,
+    .cart .total,
+    .cart .shoeID,
+    .cart .shoePrice {
+      display: none;
+    }
+  }
+  
+  .table-list .check,
+  .table-list .shoeID,
+  .table-list .shoeIMG,
+  .table-list .shoeName,
+  .table-list .shoePrice,
+  .table-list .quantity,
+  .table-list .total {
+    color: #000;
+    font-size: 15px;
+    font-weight: 400;
+    vertical-align: middle;
+  }
+  .table-list .quantity span {
+    padding: 0 5px;
+  }
+  .table-list .total {
+    font-size: large;
+    font-weight: bolder;
+  }
+  .table-list .select {
+    vertical-align: middle;
+  }
+  .table-list .select .btn {
+    font-size: 15px;
+  }
+
+  .myCardFooter .payment {
+    font-weight: 700;
+  }
+  .myCardFooter .payment .total-price {
+    color: rgba(255, 0, 0, 0.8);
+  }
