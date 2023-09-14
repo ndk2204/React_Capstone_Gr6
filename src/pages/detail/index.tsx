@@ -4,7 +4,7 @@ import { getProductById } from "src/services/product.service";
 import { IProduct } from "./detail.type";
 import ListCard from "src/components/list-card";
 import css from "./detail.module.scss";
-import { setLocalStorage } from "src/utils";
+import { getLocalStorage, setLocalStorage } from "src/utils";
 
 type TParams = {
   productId: string;
@@ -16,6 +16,9 @@ function Detail() {
   const [productItem, setProductItem] = useState<IProduct>();
   const [quantity, setQuantity] = useState(1);
 
+  let localData: Array<any>
+  localData = getLocalStorage("localCarts");
+  console.log(localData);
   useEffect(() => {
     if (!params.productId) return;
 
@@ -71,9 +74,30 @@ function Detail() {
           </div>
           <button
             onClick={() => {
-              const itemCarts = { ...productItem, quantity };
-              console.log(itemCarts);
-              setLocalStorage("itemCarts", itemCarts);
+              const listCarts = { ...productItem, quantity };
+              console.log(listCarts);
+
+              if (localData === null) {
+                console.log("first");
+                setLocalStorage("localCarts", listCarts);
+              } else {
+                if (
+                  localData.map((item) => {
+                    console.log("2");
+                    if (item.id === listCarts.id) {
+                      item.quantity += quantity;
+                    }
+                    setLocalStorage("localCarts", localData);
+                    console.log("tang id", localData);
+                  })
+                ) {
+                } else {
+                  console.log("3");
+
+                  localData.push(listCarts);
+                  setLocalStorage("localCarts", localData);
+                }
+              }
             }}
             className={css.addToCart}
           >

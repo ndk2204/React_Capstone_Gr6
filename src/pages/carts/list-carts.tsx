@@ -2,7 +2,7 @@ import React from "react";
 import { getLocalStorage } from "src/utils";
 
 function ListCarts() {
-  let list = getLocalStorage("itemCarts")
+  let list = getLocalStorage("listCarts")
   console.log(list)
   return (
     <>
