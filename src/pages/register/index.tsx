@@ -41,6 +41,7 @@ function Register() {
       password: "",
       confirmPassword: "",
       phone: "",
+      gender: "",
     },
 
     validationSchema: registerSchema,
@@ -51,7 +52,7 @@ function Register() {
         name: value.userName,
         password: value.password,
         phone: value.phone,
-        gender: true,
+        gender: value.gender === "true" ? true : false,
       };
 
       signup(data)
