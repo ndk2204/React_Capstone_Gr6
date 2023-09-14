@@ -2,16 +2,16 @@ import React from "react";
 import { getLocalStorage } from "src/utils";
 
 function ListCarts() {
-  let list = getLocalStorage("listCarts")
+  let list = getLocalStorage("localCarts")
   console.log(list)
   return (
     <>
-
-      <tr className="table-list">
+    {list.map((list:any,index:number)=>{
+      return <tr key={index} className="table-list">
         <td className="check">
           <input type="checkbox" />
         </td>
-        <td className="shoeID">{list.id}</td>
+        <td  className="shoeID">{list.id}</td>
         <td className="shoeIMG">
           <img src={list.image} /></td>
         <td className="shoeName">{list.name}</td>
@@ -31,6 +31,7 @@ function ListCarts() {
           <button className="btn btn-danger">Delete</button>
         </td>
       </tr>
+      })}
 
     </>
   );

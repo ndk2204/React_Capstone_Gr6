@@ -16,9 +16,6 @@ function Detail() {
   const [productItem, setProductItem] = useState<IProduct>();
   const [quantity, setQuantity] = useState(1);
 
-  let localData: Array<any>
-  localData = getLocalStorage("localCarts");
-  console.log(localData);
   useEffect(() => {
     if (!params.productId) return;
 
@@ -31,6 +28,27 @@ function Detail() {
       });
   }, [params.productId]);
 
+  const handleClick = () => {
+    let localData = getLocalStorage("localCarts");
+    const item = { ...productItem, quantity };
+
+    if (localData !== null) {
+      if (
+        localData.map((shoe) => {
+          shoe.id !== item.id;
+        })
+      ) {
+        localData.push(item);
+        setLocalStorage("localCarts", localData);
+        console.log("-----1", localData);
+      } else {
+        console.log("-----2", localData);
+      }
+    } else {
+      setLocalStorage("localCarts", [item]);
+      console.log("-----3", localData);
+    }
+  };
   return (
     <div>
       <div className={css.boxDetail}>
@@ -72,35 +90,7 @@ function Detail() {
               -
             </button>
           </div>
-          <button
-            onClick={() => {
-              const listCarts = { ...productItem, quantity };
-              console.log(listCarts);
-
-              if (localData === null) {
-                console.log("first");
-                setLocalStorage("localCarts", listCarts);
-              } else {
-                if (
-                  localData.map((item) => {
-                    console.log("2");
-                    if (item.id === listCarts.id) {
-                      item.quantity += quantity;
-                    }
-                    setLocalStorage("localCarts", localData);
-                    console.log("tang id", localData);
-                  })
-                ) {
-                } else {
-                  console.log("3");
-
-                  localData.push(listCarts);
-                  setLocalStorage("localCarts", localData);
-                }
-              }
-            }}
-            className={css.addToCart}
-          >
+          <button onClick={handleClick} className={css.addToCart}>
             Add to cart
           </button>
         </div>

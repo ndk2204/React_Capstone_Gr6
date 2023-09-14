@@ -28,7 +28,9 @@ function Carts() {
           </table>
 
           <div className="card-footer myCardFooter text-end">
-            <h4 className="payment">Total Payment:            <span className="total-price">a</span> </h4>
+            <h4 className="payment">
+              Total Payment: <span className="total-price">a</span>{" "}
+            </h4>
 
             <button className="btn btn-warning">SUBMIT ORDER</button>
           </div>
