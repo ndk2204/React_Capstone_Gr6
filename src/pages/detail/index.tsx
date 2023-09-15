@@ -32,21 +32,25 @@ function Detail() {
     let localData = getLocalStorage("localCarts");
     const item = { ...productItem, quantity };
 
-    if (localData !== null) {
+    if (localData == null) {
+      setLocalStorage("localCarts", [item]);
+      console.log("-----1", localData);
+    } else {
       if (
-        localData.map((shoe) => {
-          shoe.id !== item.id;
+        localData.some((shoe: any) => {
+          if (shoe.id === item.id) {
+            shoe.quantity += quantity;
+            return true;
+          }
         })
       ) {
+        setLocalStorage("localCarts", localData);
+        console.log("-----2", localData);
+      } else {
         localData.push(item);
         setLocalStorage("localCarts", localData);
-        console.log("-----1", localData);
-      } else {
-        console.log("-----2", localData);
+        console.log("-----3", localData);
       }
-    } else {
-      setLocalStorage("localCarts", [item]);
-      console.log("-----3", localData);
     }
   };
   return (

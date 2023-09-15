@@ -1,7 +1,19 @@
 import React from "react";
 import css from "./carts.module.scss";
 import ListCarts from "./list-carts";
-function Carts() {
+import { getLocalStorage } from "src/utils";
+import { TCardItem } from "src/types";
+
+type Props = {
+  data: TCardItem[];
+};
+function Carts(props: Props) {
+  let dataLocal = getLocalStorage("localCarts");
+  let sum = 0;
+  dataLocal.map((item: any) => {
+    sum += item.price * item.quantity;
+    return sum;
+  });
   return (
     <>
       <div className="container cart">
@@ -14,25 +26,28 @@ function Carts() {
                   <input type="checkbox" />
                 </th>
                 <th className="col-1 shoeID">ID</th>
-                <th className="col-1">Image</th>
-                <th className="col-1 col-md-2 shoeName">Name</th>
+                <th className="col-2">Image</th>
+                <th className="col-2 col-md-2 shoeName">Name</th>
                 <th className="col-1 shoePrice">Price</th>
-                <th className="col-1 col-md-2">Quantity</th>
+                <th className="col-2 col-md-2">Quantity</th>
                 <th className="col-1 total">Total</th>
-                <th className="col-1 col-sm-2">Action</th>
+                <th className="col-2 col-sm-2">Action</th>
               </tr>
             </thead>
             <tbody>
-              <ListCarts />
+              <ListCarts data={dataLocal} />
             </tbody>
           </table>
 
           <div className="card-footer myCardFooter text-end">
             <h4 className="payment">
-              Total Payment: <span className="total-price">a</span>{" "}
+              Total Payment:{" "}
+              <span className="total-price">
+                {sum.toLocaleString("en-US")}$
+              </span>{" "}
             </h4>
 
-            <button className="btn btn-warning">SUBMIT ORDER</button>
+            <button className="btn btn-submit">SUBMIT ORDER</button>
           </div>
         </div>
       </div>
