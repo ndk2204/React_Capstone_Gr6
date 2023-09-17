@@ -3,11 +3,15 @@ import css from "./carts.module.scss";
 import ListCarts from "./list-carts";
 import { getLocalStorage } from "src/utils";
 import { TCardItem } from "src/types";
+import { useAppSelector } from "src/redux/config-store";
 
 type Props = {
   data: TCardItem[];
 };
 function Carts(props: Props) {
+  const data = useAppSelector((state)=> state.productReducer.gioHang)
+  console.log(data)
+
   let dataLocal = getLocalStorage("localCarts");
   let sum = 0;
   dataLocal.map((item: any) => {

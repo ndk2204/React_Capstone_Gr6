@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "src/services/product.service";
 import { IProduct } from "./detail.type";
 import ListCard from "src/components/list-card";
 import css from "./detail.module.scss";
 import { getLocalStorage, setLocalStorage } from "src/utils";
+import { useDispatch } from "react-redux";
+import { setgioHang } from "src/redux/slices/product.slice";
 
 type TParams = {
   productId: string;
@@ -15,6 +17,9 @@ function Detail() {
   const params = useParams<TParams>();
   const [productItem, setProductItem] = useState<IProduct>();
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     if (!params.productId) return;
@@ -27,11 +32,9 @@ function Detail() {
         console.log(err);
       });
   }, [params.productId]);
-
   const handleClick = () => {
     let localData = getLocalStorage("localCarts");
     const item = { ...productItem, quantity };
-
     if (localData == null) {
       setLocalStorage("localCarts", [item]);
       console.log("-----1", localData);
@@ -52,6 +55,11 @@ function Detail() {
         console.log("-----3", localData);
       }
     }
+    const action = setgioHang(localData);
+
+    dispatch(action);
+
+    navigate("/carts");
   };
   return (
     <div>
@@ -77,7 +85,8 @@ function Detail() {
             <button
               onClick={() => {
                 setQuantity((c) => c + 1);
-              }}
+              }
+            }
               className={css.btnQuantity}
             >
               +
