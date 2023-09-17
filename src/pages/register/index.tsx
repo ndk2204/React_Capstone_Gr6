@@ -1,63 +1,12 @@
-import { useFormik } from "formik";
 import React from "react";
+import css from "./register.module.scss";
+import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { signup } from "src/services/user.service";
 import * as Y from "yup";
 
-/**
- * 2 sự lựa chọn
- * 1. Sử dụng component có sẵn của formik: <Formik />, <Field />: contextAPi
- * 2. Sử dụng hooks useFormik
- *
- * Ưu tiên sử dụng useFormik
- */
-
-// const field = {
-//   name: "userName",
-//   onChange: () => {},
-//   value: "",
-// };
-
-// <Register a={10} b={20} {...field} />;
-// // <==>
-// Register({ a: 10, b: 20, ...field });
-// Register({ a: 10, b: 20, name: "userName", onChange: () => {}, value: "" });
-
-const validate = (value: any) => {
-  const errors: Partial<typeof value> = {};
-
-  /**
-   * user name: - bắt buộc
-   * 						- từ 5 - 20 ký tự
-   * password: 	- bắt buộc
-   * 						- từ 5 - 20 ký tự
-   */
-
-  // if (value.userName === "") {
-  if (!value.userName) {
-    errors.userName = "User name yêu cầu bắt buộc.";
-  } else if (value.userName.length > 20 || value.userName.length < 5) {
-    errors.userName = "User name phải từ 5 đến 20 ký tự.";
-  }
-
-  if (!value.password) {
-    errors.password = "Password yêu cầu bắt buộc.";
-  } else if (value.password.length > 20 || value.password.length < 5) {
-    errors.password = "Password phải từ 5 đến 20 ký tự.";
-  }
-
-  if (!value.confirmPassword) {
-    errors.confirmPassword = "Confirm Password yêu cầu bắt buộc.";
-  } else if (value.confirmPassword !== value.password) {
-    errors.confirmPassword =
-      "Confirm password phải trùng khớp với lại password.";
-  }
-
-  return errors;
-};
-
 const registerSchema = Y.object({
-  email: Y.string().email().required(),
+  email: Y.string().email().required("Email không được để trống"),
   userName: Y.string()
     .min(5, "User name phải lớn hơn 5 ký tự.")
     .max(20, "User name phải nhỏ hơn 20 ký tự.")
@@ -69,44 +18,40 @@ const registerSchema = Y.object({
   confirmPassword: Y.string()
     .oneOf([Y.ref("password")], "Passwords must match")
     .required("Bắt buộc nhập vào Confirm password."),
+  phone: Y.string()
+    .min(10, "Phone không thấp hơn 10 số.")
+    .max(11, "Phone không cao hơn 11 số.")
+    .required("Phone không được để trống."),
 });
 
 export type TParamsRegister = {
   email: string;
-  password: string;
   name: string;
-  gender: boolean;
+  password: string;
   phone: string;
+  gender: boolean;
 };
 
-function Register(props: any) {
+function Register() {
   const navigate = useNavigate();
-  /**
-   *  props = { a: 10, b: 20 }
-   */
   const formik = useFormik({
     initialValues: {
-      userName: "", // giống tên name props của input
+      email: "",
+      userName: "",
       password: "",
       confirmPassword: "",
-      email: "",
+      phone: "",
     },
-    // chọn 1 trong 2
 
-    // 2. sử dụng thư viện
     validationSchema: registerSchema,
-
-    // 1. lựa chọn validate thủ công
-    // validate,
 
     onSubmit: (value) => {
       const data: TParamsRegister = {
-        gender: true,
-        phone: "0123456789",
-
         email: value.email,
-        password: value.password,
         name: value.userName,
+        password: value.password,
+        phone: value.phone,
+        gender: true,
       };
 
       signup(data)
@@ -120,51 +65,173 @@ function Register(props: any) {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <input
-        placeholder="Email"
-        // name="userName"
-        // value={formik.values.userName}
-        // onChange={formik.handleChange}
-        // onBlur={formik.handleBlur}
-
-        {...formik.getFieldProps("email")}
-      />
-      {formik.touched.email && formik.errors.email && (
-        <p>{formik.errors.email}</p>
-      )}
-      <br />
-      <input
-        placeholder="User name"
-        // name="userName"
-        // value={formik.values.userName}
-        // onChange={formik.handleChange}
-        // onBlur={formik.handleBlur}
-
-        {...formik.getFieldProps("userName")}
-      />
-      {formik.touched.userName && formik.errors.userName && (
-        <p>{formik.errors.userName}</p>
-      )}
-
-      <br />
-      <input placeholder="Password" {...formik.getFieldProps("password")} />
-      {formik.touched.password && formik.errors.password && (
-        <p>{formik.errors.password}</p>
-      )}
-
-      <br />
-      <input
-        placeholder="Confirm Password"
-        {...formik.getFieldProps("confirmPassword")}
-      />
-
-      {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-        <p>{formik.errors.confirmPassword}</p>
-      )}
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <div className={css["container"]}>
+      <h2 className={css["register__text"]}>Register</h2>
+      <hr></hr>
+      <form className={css["register__form"]} onSubmit={formik.handleSubmit}>
+        <div className={css["register__row"]}>
+          <div className={css["register__col"]}>
+            <div className={css["register__item"]}>
+              <label className={css["register__label"]} htmlFor="email">
+                Email
+              </label>
+              <br />
+              <input
+                className={css["register__input"]}
+                id="email"
+                placeholder="Email"
+                {...formik.getFieldProps("email")}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <p
+                  style={{
+                    color: "#F50E0E",
+                    fontSize: "1.2rem",
+                    fontWeight: 400,
+                    lineHeight: "1.6rem",
+                    textAlign: "left",
+                  }}
+                >
+                  {formik.errors.email}
+                </p>
+              )}
+            </div>
+            <div className={css["register__item"]}>
+              <label className={css["register__label"]} htmlFor="password">
+                Password
+              </label>
+              <br />
+              <input
+                className={css["register__input"]}
+                id="password"
+                placeholder="Password"
+                {...formik.getFieldProps("password")}
+              />
+              {formik.touched.password && formik.errors.password && (
+                <p
+                  style={{
+                    color: "#F50E0E",
+                    fontSize: "1.2rem",
+                    fontWeight: 400,
+                    lineHeight: "1.6rem",
+                    textAlign: "left",
+                  }}
+                >
+                  {formik.errors.password}
+                </p>
+              )}
+            </div>
+            <div className={css["register__item"]}>
+              <label
+                className={css["register__label"]}
+                htmlFor="password-confirm"
+              >
+                Password confirm
+              </label>
+              <br />
+              <input
+                className={css["register__input"]}
+                id="password-confirm"
+                placeholder="Confirm Password"
+                {...formik.getFieldProps("confirmPassword")}
+              />
+              {formik.touched.confirmPassword &&
+                formik.errors.confirmPassword && (
+                  <p
+                    style={{
+                      color: "#F50E0E",
+                      fontSize: "1.2rem",
+                      fontWeight: 400,
+                      lineHeight: "1.6rem",
+                      textAlign: "left",
+                    }}
+                  >
+                    {formik.errors.confirmPassword}
+                  </p>
+                )}
+            </div>
+          </div>
+          <div className={css["register__col"]}>
+            <div className={css["register__item"]}>
+              <label className={css["register__label"]} htmlFor="name">
+                Name
+              </label>
+              <br />
+              <input
+                className={css["register__input"]}
+                id="name"
+                placeholder="User name"
+                {...formik.getFieldProps("userName")}
+              />
+              {formik.touched.userName && formik.errors.userName && (
+                <p
+                  style={{
+                    color: "#F50E0E",
+                    fontSize: "1.2rem",
+                    fontWeight: 400,
+                    lineHeight: "1.6rem",
+                    textAlign: "left",
+                  }}
+                >
+                  {formik.errors.userName}
+                </p>
+              )}
+            </div>
+            <div className={css["register__item"]}>
+              <label className={css["register__label"]} htmlFor="phone">
+                Phone
+              </label>
+              <br />
+              <input
+                className={css["register__input"]}
+                id="phone"
+                placeholder="Phone"
+                {...formik.getFieldProps("phone")}
+              />
+              {formik.touched.phone && formik.errors.phone && (
+                <p
+                  style={{
+                    color: "#F50E0E",
+                    fontSize: "1.2rem",
+                    fontWeight: 400,
+                    lineHeight: "1.6rem",
+                    textAlign: "left",
+                  }}
+                >
+                  {formik.errors.phone}
+                </p>
+              )}
+            </div>
+            <div className={css["register__gender"]}>
+              <div className={css["gender__row"]}>
+                <label className={css["register__label"]}>Gender</label>
+                <ul className={css["register-ul"]}>
+                  <li className={css["register-male"]}>
+                    <input
+                      type="radio"
+                      className={css["register-choice"]}
+                      {...formik.getFieldProps("gender")}
+                    />
+                    <label htmlFor="male">Male</label>
+                  </li>
+                  <li className={css["register-female"]}>
+                    <input
+                      type="radio"
+                      className={css["register-choice"]}
+                      {...formik.getFieldProps("gender")}
+                    />
+                    <label htmlFor="female">Female</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <button type="submit" className={css["register-button"]}>
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 }
 
