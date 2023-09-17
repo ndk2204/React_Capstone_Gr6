@@ -21,6 +21,7 @@ export const axiosWithAuth = axios.create({
 axiosWithAuth.interceptors.request.use(
   (config) => {
     /**
+     * dành cho call api thành công
      * config: là những setup thông tin của api đó
      */
     config.headers["Authorization"] = `Bearer ${getLocalStorage(ACCESS_TOKEN)}`;

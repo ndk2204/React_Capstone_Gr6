@@ -1,13 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TCardItem } from "src/types";
+import { getLocalStorage } from "src/utils";
 //createSlice của reduxjs/toolkit, gom tổng hợp 3 folder action,constant,reduce
 
 type TState = {
   listProduct: TCardItem[];
+  gioHang: TCardItem[];
+
 };
+
+let dataLocal = getLocalStorage("localCarts");
 
 const initialState: TState = {
   listProduct: [],
+  gioHang :dataLocal
 };
 
 const productSlice = createSlice({
@@ -25,12 +31,17 @@ const productSlice = createSlice({
       //2. redux + immer: giúp chúng ta clone object, không cần quan tâm đến địa chỉ.
       // không cần dùng return
       state.listProduct = action.payload;
+      
     },
+    setgioHang: (state, action) => {
+      state.gioHang = action.payload;
+    },
+
   },
 });
 
 // Bóc tách ra action creator của Redux
-export const { setListProduct } = productSlice.actions;
+export const { setListProduct,setgioHang } = productSlice.actions;
 
 //productSlice tạo ra hàm reducer, chấm đến để sử dụng reducer
 export default productSlice.reducer;
