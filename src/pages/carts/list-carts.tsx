@@ -31,9 +31,10 @@ function ListCarts(props: Props) {
               <span>{soluong}</span>
               <button
                 onClick={() => {
-                  setSoLuong((c) => {soluong += 1 });
+                  setSoLuong((c) => {
+                    soluong += 1;
+                  });
                   console.log(soluong);
-                  return soluong;
                 }}
                 className="btn btn-dark"
               >
