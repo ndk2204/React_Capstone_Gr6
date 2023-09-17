@@ -16,7 +16,7 @@ function ListCarts(props: Props) {
         return (
           <tr key={index} className="table-list">
             <td className="check">
-              <input type="checkbox" />
+              <input className="check" type="checkbox" />
             </td>
             <td className="shoeID">{list.id}</td>
             <td className="shoeIMG">

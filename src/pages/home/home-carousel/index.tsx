@@ -8,6 +8,7 @@ import arrowLeft from "src/assets/imgs/carousel/arrleft.svg";
 import arrowRight from "src/assets/imgs/carousel/arrright.svg";
 
 import css from "./carousel.module.scss";
+import { Link } from "react-router-dom";
 
 // const contentStyle: React.CSSProperties = {
 //   margin: 0,
@@ -22,7 +23,7 @@ const HomeCarousel: React.FC = () => {
   const onChange = (currentSlide: number) => {
     // console.log(currentSlide);
   };
-  
+
   /**
    * Để truy cập được những methods của component export ra thì ta dùng useRef
    */
@@ -69,12 +70,15 @@ const HomeCarousel: React.FC = () => {
         </div>
         <div className={css["carousel-title"]}>
           <h1 style={{ fontSize: 40, fontWeight: 300, marginBottom: 0 }}>
-            Adidas Prophere
+            Adidas Super Star
           </h1>
           <p style={{ fontSize: 20, fontWeight: 300, marginBottom: 25 }}>
-            Adidas description
+            The adidas Primeknit upper wraps the foot with a supportive fit that
+            enhances movement{" "}
           </p>
-          <button className={css["carousel-btn"]}>Buy now</button>
+          <Link to="/detail/4">
+            <button className={css["carousel-btn"]}>Buy now</button>
+          </Link>
         </div>
       </div>
     </>

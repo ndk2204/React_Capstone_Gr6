@@ -25,8 +25,8 @@ function Carts(props: any) {
           <table className="table table-bordered table-hover myTable">
             <thead>
               <tr>
-                <th className="col-1">
-                  <input type="checkbox" />
+                <th className="col-1 check">
+                  <input className="check" type="checkbox" />
                 </th>
                 <th className="col-1 shoeID">ID</th>
                 <th className="col-2">Image</th>
