@@ -51,7 +51,7 @@ function Home() {
 
       //2. Chạy actionCreate do redux cung cấp:
       const action = setListProduct(resp.content);
-      console.log(action);
+      // console.log(action);
 
       dispatch(action);
     })();

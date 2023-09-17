@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "src/services/product.service";
 import { IProduct } from "./detail.type";
 import ListCard from "src/components/list-card";

@@ -9,16 +9,16 @@ import { IconCart, IconSearch } from "src/assets/icons";
 
 import imgLogo from "src/assets/imgs/logo.png";
 import { Link, NavLink } from "react-router-dom";
-import { getLocalStorage } from "src/utils";
 import { useAppSelector } from "src/redux/config-store";
 
 function Header() {
-  // console.log({ css });
-  let dataLocal = getLocalStorage("localCarts");
-  
   let soluong = 0;
-  const data = useAppSelector((state)=> state.productReducer.gioHang)
-  soluong = data.length
+  const data = useAppSelector((state) => state.productReducer.gioHang);
+  if (!data) {
+    soluong = 0;
+  } else {
+    soluong = data.length;
+  }
 
   const handleClassActive = ({ isActive }: any) => {
     return isActive ? css.active : "";

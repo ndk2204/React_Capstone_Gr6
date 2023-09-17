@@ -5,12 +5,11 @@ import { getLocalStorage } from "src/utils";
 import { TCardItem } from "src/types";
 import { useAppSelector } from "src/redux/config-store";
 
-type Props = {
-  data: TCardItem[];
-};
-function Carts(props: Props) {
-  const data = useAppSelector((state)=> state.productReducer.gioHang)
-  console.log(data)
+// type Props = {
+//   data: TCardItem[];
+// };
+function Carts(props: any) {
+  // const data = useAppSelector((state)=> state.productReducer.gioHang)
 
   let dataLocal = getLocalStorage("localCarts");
   let sum = 0;
