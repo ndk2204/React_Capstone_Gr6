@@ -68,7 +68,7 @@ switch (number) {
     break;
   }
   default:
-    console.log("....");
+    // console.log("....");
 }
 // nhanh hon, ton tai nguyen
 const obj = {
