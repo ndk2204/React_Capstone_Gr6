@@ -6,26 +6,39 @@ import { getLocalStorage, setLocalStorage } from "src/utils";
 
 type Props = {
   data: TCardItem[];
+  setData: (id:number) => void;
 };
 
-function ListCarts() {
+function ListCarts({ data, setData }: Props) {
   // let list = props.data;
-  let localData = getLocalStorage("localCarts");
+  // let localData = getLocalStorage("localCarts");
   const dispatch = useDispatch();
+  const localData = getLocalStorage("localCarts");
 
-  const handleClick = (item: any) => {
-    item.quantity += 1;
-    console.log(item.id);
-    console.log(item.quantity);
+  const handleClickUp = (id: any) => {
+    const findIndex = localData?.find((item: any) => item.id === id);
+    findIndex.quantity += 1;
 
-    setLocalStorage("localCarts", localData);
+    // item.quantity += 1;
+    // console.log(item.id);
+    // console.log(item.quantity);
     const action = setgioHang(localData);
     dispatch(action);
+    setLocalStorage("localCarts", localData);
+    setData(localData);
   };
 
+  const handleClickDown = (id: any) => {
+    const findIndex = localData?.find((item: any) => item.id === id);
+    findIndex.quantity -= 1;
+    const action = setgioHang(localData);
+    dispatch(action);
+    setLocalStorage("localCarts", localData);
+    setData(localData);
+  };
   return (
     <>
-      {localData.map((list: any, index: number) => {
+      {data.map((list: any, index: number) => {
         let total;
         total = (list.price * list.quantity).toLocaleString("en-US");
         return (
@@ -40,12 +53,15 @@ function ListCarts() {
             <td className="shoeName">{list.name}</td>
             <td className="shoePrice">{list.price}$</td>
             <td className="quantity">
-              <button className="btn btn-dark">
+              <button
+                onClick={() => handleClickDown(list.id)}
+                className="btn btn-dark"
+              >
                 <i className="fa-solid fa-minus"></i>
               </button>
               <span>{list.quantity}</span>
               <button
-                onClick={() => handleClick(list)}
+                onClick={() => handleClickUp(list.id)}
                 // onClick={() => {
                 //   let localData = getLocalStorage("localCarts");
 
