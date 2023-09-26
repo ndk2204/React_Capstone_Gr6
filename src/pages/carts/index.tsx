@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import css from "./carts.module.scss";
 import ListCarts from "./list-carts";
 import { getLocalStorage } from "src/utils";
@@ -10,8 +10,8 @@ import { useAppSelector } from "src/redux/config-store";
 // };
 function Carts(props: any) {
   // const data = useAppSelector((state)=> state.productReducer.gioHang)
-
   let dataLocal = getLocalStorage("localCarts");
+  const [data, setData] = useState(dataLocal);
   let sum = 0;
   dataLocal.map((item: any) => {
     sum += item.price * item.quantity;
@@ -38,7 +38,7 @@ function Carts(props: any) {
               </tr>
             </thead>
             <tbody>
-              <ListCarts data={dataLocal} />
+              <ListCarts data={data} setData={setData} />
             </tbody>
           </table>
 

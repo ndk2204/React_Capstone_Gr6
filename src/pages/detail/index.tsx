@@ -20,10 +20,8 @@ function Detail() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     if (!params.productId) return;
-
     getProductById(params.productId)
       .then((resp) => {
         setProductItem(resp.content);
@@ -56,9 +54,7 @@ function Detail() {
       }
     }
     const action = setgioHang(localData);
-
     dispatch(action);
-
     navigate("/carts");
   };
   return (
